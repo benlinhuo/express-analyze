@@ -11,8 +11,8 @@
 
 2. 方式二
 ```javascript
-function middleware2(){
-    var i=0;
+function middleware2(startNum){
+    var i=startNum;
     return function(req, res, next){
         i++;
         req.count=i;
@@ -20,4 +20,6 @@ function middleware2(){
     }
 }
 ```
-该方式的引用：app.use(middleware2())。注意：我们是在执行函数middleware2的时候，return一个代表中间件的函数出来，该函数才是中间件的实体。
+该方式的引用：app.use(middleware2(startNum))。注意：我们是在执行函数middleware2的时候，return一个代表中间件的函数出来，该函数才是中间件的实体。
+
+方式一，主要用于某些中间件不需要传入参数；方式二，我们可以传递一个参数给该中间件
